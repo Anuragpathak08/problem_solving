@@ -1,31 +1,12 @@
 class Solution:
-    def findMedianSortedArrays(self, nums1, nums2) -> float:
-        array = []
-        i = 0
-        j = 0
-        while i<len(nums1) and j<len(nums2):
-            if nums1[i] > nums2[j]:
-                array.append( nums2[j])
-                j+=1
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        last_seen = {}
+        start = 0
+        best = 0
+        for i,ch in enumerate(s):
+            if ch in last_seen and  last_seen[ch]>= start:
+                start = last_seen[ch]+1
 
-            elif nums1[i] <= nums2[j]:
-                array.append( nums1[i])
-                i+=1
-
-            
-        
-        while i<len(nums1):
-            array.append( nums1[i])
-            i+=1
-
-        while j<len(nums2):
-            array.append( nums2[j])
-            j+=1
-
-        l = len(array)
-        if l%2 == 0 :
-            median = (array[l//2]+array[(l//2)-1])/2
-        else:
-            median = array[l//2]
-
-        return median
+            last_seen[ch] = i
+            best = max(best, i - start + 1)
+        return best
