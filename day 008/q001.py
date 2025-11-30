@@ -1,3 +1,4 @@
+# leetcode 8
 def myAtoi( s: str) -> int:
     if not s or s == "-" or s == '+':
         return 0
