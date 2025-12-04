@@ -4,11 +4,10 @@ def isValid(s: str) -> bool:
         stack = []
         hsh = {']':'[','}':'{',')':'('}
         for i in s:
-            print(stack)
-            if i in '({[':
-                stack.append(i)
-            elif stack and hsh[i] == stack[-1]:
-                    stack.pop()
+            if stack and hsh.get(i) == stack[-1]:
+                stack.pop()
+                continue
+            stack.append(i)
         if stack:
             return False
         else:
